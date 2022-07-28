@@ -27,7 +27,7 @@ const donerSchema = mongoose.Schema(
     type : String ,
     required : true
   },
-  location: {
+  area: {
     type : String ,
     required : true
   },

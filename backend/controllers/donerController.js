@@ -48,7 +48,7 @@ const setDoner = asyncHandler(async (req, res) => {
     throw new Error('Please add the field')
   }
 
-  if (!req.body.location) {
+  if (!req.body.area) {
     res.status(400)
     throw new Error('Please add the field')
   }
@@ -65,7 +65,7 @@ const setDoner = asyncHandler(async (req, res) => {
     height: req.body.height,
     weight: req.body.weight,
     bloodGroup: req.body.bloodGroup,
-    location: req.body.location,
+    area: req.body.area,
     phone: req.body.phone,
     user: req.user.id,
   })
@@ -131,10 +131,34 @@ const deleteDoner = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id })
 })
 
+
+// @desc    Get doners
+// @route   GET /api/doners
+// @access  Private
+const getBlood = asyncHandler(async (req, res) => {
+  const {bloodGroup} = req.body
+    const doners = await Doner.find({bloodGroup})
+    res.status(200).json(doners)
+
+})
+
+// @desc    Get doners
+// @route   GET /api/doners
+// @access  Private
+const getBloodByArea = asyncHandler(async (req, res) => {
+  const {area} = req.body
+    const doners = await Doner.find({area})
+    res.status(200).json(doners)
+
+})
+
 module.exports = {
   getDoners,
   getAllDoner,
   setDoner,
   updateDoner,
   deleteDoner,
+ // filterBlood
+ getBlood,
+ getBloodByArea
 }

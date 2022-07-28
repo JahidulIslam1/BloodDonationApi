@@ -83,6 +83,8 @@ const getAllUser = asyncHandler(async (req, res) => {
   res.status(200).json(users);
 })
 
+
+
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -94,5 +96,5 @@ module.exports = {
   registerUser,
   loginUser,
   getUser,
-  getAllUser
+  getAllUser,
 }
