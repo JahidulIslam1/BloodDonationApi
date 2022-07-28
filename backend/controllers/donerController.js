@@ -8,12 +8,19 @@ const User = require('../models/UserModel')
 // @access  Private
 const getDoners = asyncHandler(async (req, res) => {
   const doners = await Doner.find({ user: req.user.id })
-
   res.status(200).json(doners)
 })
 
-// @desc    Set doner
-// @route   POST /api/doners
+// @desc    Get all Doneer data for admin
+// @route   GET /api/doners/alldoners
+// @access  Private
+const getAllDoner = asyncHandler(async (req, res) => {
+  const doners = await Doner.find();
+  res.status(200).json(doners);
+})
+
+// @desc    Set doner (for donating blood post)
+// @route   POST /api/doners/post
 // @access  Private
 const setDoner = asyncHandler(async (req, res) => {
   if (!req.body.gender) {
@@ -41,7 +48,7 @@ const setDoner = asyncHandler(async (req, res) => {
     throw new Error('Please add the field')
   }
 
-  if (!req.body.area) {
+  if (!req.body.location) {
     res.status(400)
     throw new Error('Please add the field')
   }
@@ -58,7 +65,7 @@ const setDoner = asyncHandler(async (req, res) => {
     height: req.body.height,
     weight: req.body.weight,
     bloodGroup: req.body.bloodGroup,
-    area: req.body.area,
+    location: req.body.location,
     phone: req.body.phone,
     user: req.user.id,
   })
@@ -126,6 +133,7 @@ const deleteDoner = asyncHandler(async (req, res) => {
 
 module.exports = {
   getDoners,
+  getAllDoner,
   setDoner,
   updateDoner,
   deleteDoner,
