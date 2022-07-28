@@ -9,7 +9,7 @@ const {
 
 const { protect } = require('../middleware/authMiddleware')
 
-router.route('/').get(protect, getDoners).post(protect, setDoner)
-router.route('/:id').delete(protect, deleteDoner).put(protect, updateDoner)
+router.route('/').get( protect, getDoners).post(protect, setDoner)
+router.route('/:id').delete( protect, deleteDoner).put( protect, updateDoner)
 
 module.exports = router

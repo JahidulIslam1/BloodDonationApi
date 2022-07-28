@@ -30,7 +30,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     name,
     email,
-    password: hashedPassword,
+    password: hashedPassword
   })
 
   if (user) {
@@ -60,7 +60,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id),
+      token: generateToken(user._id)
     })
   } else {
     res.status(400)
@@ -69,10 +69,18 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 // @desc    Get user data
-// @route   GET /api/users/me
+// @route   GET /api/users/user
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
   res.status(200).json(req.user)
+})
+
+// @desc    Get all users data
+// @route   GET /api/users/alluser
+// @access  Private
+const getAllUser = asyncHandler(async (req, res) => {
+  const users = await User.find();
+  res.status(200).json(users);
 })
 
 // Generate JWT
@@ -86,4 +94,5 @@ module.exports = {
   registerUser,
   loginUser,
   getUser,
+  getAllUser
 }
