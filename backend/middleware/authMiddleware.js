@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/UserModel');
 
-// Private Protect for user
+// User Authentication
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
@@ -33,7 +33,7 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-// Private Protect for admin
+// Admin Authentication
 const protectAdmin = (req, res, next) => {
 //  console.log(!req.user.isAdmin);
   if (req.user.isAdmin) {

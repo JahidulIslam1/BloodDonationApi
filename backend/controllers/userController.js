@@ -75,7 +75,7 @@ const getUser = asyncHandler(async (req, res) => {
   res.status(200).json(req.user)
 })
 
-// @desc    Get all users data
+// @desc    Get all user data for admin
 // @route   GET /api/users/alluser
 // @access  Private
 const getAllUser = asyncHandler(async (req, res) => {
